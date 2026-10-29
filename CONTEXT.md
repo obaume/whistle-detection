@@ -17,7 +17,7 @@ A whistle blast during dead time, after a stop whistle and before the next faceo
 _Avoid_: dead-time false alarm (it's a real whistle blast, not a mistake)
 
 **Detection**:
-One output of this tool: a video timestamp where it believes a whistle blast occurs, with a confidence and the name and version of the detector that produced it. Raw and unreviewed.
+One output of this tool: a video timestamp where it believes a whistle blast occurs, with a confidence and the name and version of the detector that produced it. Raw and unreviewed. It doesn't say which kind of whistle blast it is; the tagger decides that in review.
 _Avoid_: Whistle, proposal, prediction
 
 **Whistle** (hockey-analyzer's term):
@@ -28,3 +28,5 @@ _Avoid_: using it for a Detection or a whistle blast
 
 - A **Detection** of a **whistle blast** becomes a **Whistle** when hockey-analyzer imports it.
 - A **whistle blast** is either a **stop whistle** or a **line-change whistle**. Between two faceoffs there is normally one of each, in that order.
+- Every detected whistle blast becomes a **Detection**, whatever its kind; this tool drops none.
+- A **Whistle** for a **line-change whistle** is resolved as **Line change** in the app; one for a stop whistle as Stoppage, Goal / Penalty or Explained. Only **Not a whistle** means no whistle blast occurred.
